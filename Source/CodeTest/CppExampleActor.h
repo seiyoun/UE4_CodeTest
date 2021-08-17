@@ -26,9 +26,38 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 public:
+
+	// BlueprintReadWrite ブルプリントで読み書き可能
+	// BlueprintReadOnly ブルプリントで読み取り可能
+
+	// EditAnywhere レベルエディタで読み書き可能
+
+	// VisibleAnywhere レベルエディタやブループリントエディタで閲覧できる
+	// Category 検索
+
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "UE C++ book")
 		FCppExampleStruct myStructProp;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "UE C++ book")
 		ECppExampleEnum Type;
+
+	UPROPERTY(EditAnywhere, Category = "UE C++ book")
+		float EditableFloat;
+
+	UPROPERTY(BlueprintReadWrite, Category = "UE C++ book")
+		float ReadWriteFloat;
+
+	// イベント定義
+	DECLARE_DYNAMIC_MULTICAST_DELEGATE(FZeroInputDelegate);
+	UPROPERTY(BlueprintAssignable, Category = "UE C++ book")
+		FZeroInputDelegate TheZeroInputDelegate;
+
+	// 実装はC++側で持たない
+	UFUNCTION(BlueprintImplementableEvent, Category = "UE C++ book")
+		void FloatInputEvent(const float FloValue);
+
+	// 実装はc++側で持つ必要がある _Implementationが必須
+	UFUNCTION(BlueprintNativeEvent, Category = "UE C++ book")
+		void VectorInputEvent(const FVector& VecValue);
+	virtual void VectorInputEvent_Implementation(const FVector& VecValue);
 };
