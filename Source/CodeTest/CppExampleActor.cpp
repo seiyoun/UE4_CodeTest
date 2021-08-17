@@ -35,5 +35,11 @@ void ACppExampleActor::Tick(float DeltaTime)
 void ACppExampleActor::VectorInputEvent_Implementation(const FVector& VecValue)
 {
 	UE_LOG(LogTemp, Log, TEXT("CALL"));
+
+	FString testLog = TEXT("Test Log");
+	UE_LOG(LogTemp, Log, TEXT("CALL %s"), *testLog);
+
+	// 
+	GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::White, TEXT("CALL"));
 }
 
