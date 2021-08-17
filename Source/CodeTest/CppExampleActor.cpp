@@ -2,6 +2,8 @@
 
 
 #include "CppExampleActor.h"
+// ログ出力(print string)
+#include <Kismet/KismetSystemLibrary.h>
 
 // Sets default values
 ACppExampleActor::ACppExampleActor() :
@@ -39,7 +41,10 @@ void ACppExampleActor::VectorInputEvent_Implementation(const FVector& VecValue)
 	FString testLog = TEXT("Test Log");
 	UE_LOG(LogTemp, Log, TEXT("CALL %s"), *testLog);
 
-	// 
-	GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::White, TEXT("CALL"));
+	// 画面上にログ表示
+	//GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::White, TEXT("CALL"));
+
+	// 画面上にログ表示
+	UKismetSystemLibrary::PrintString(GetWorld(), TEXT("CALL"));
 }
 
