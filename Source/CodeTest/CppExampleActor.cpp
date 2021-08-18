@@ -2,6 +2,7 @@
 
 
 #include "CppExampleActor.h"
+#include "CppExampleComponent.h"
 // ログ出力(print string)
 #include <Kismet/KismetSystemLibrary.h>
 
@@ -19,6 +20,8 @@ void ACppExampleActor::BeginPlay()
 {
 	Super::BeginPlay();
 
+	// コンポーネントをアタッチ
+	UCppExampleComponent::AttachSampleComponent(this, GetActorLocation());
 	// イベント実行
 	TheZeroInputDelegate.Broadcast();
 
